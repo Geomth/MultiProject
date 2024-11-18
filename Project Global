@@ -1,0 +1,53 @@
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract NellsCarpoolContract {
+    address public borrower;
+    address public lender;
+    uint256 public loanAmount;
+    string public currency;
+    uint256 public ownershipPercentage;
+    string public purposeDescription;
+    string public loanRepaymentCommitment;
+
+    struct Purpose {
+        string description;
+        string details;
+    }
+
+    Purpose[] public purposes;
+
+    constructor() {
+        borrower = 0xAf227Cf67c13B54246B5220608fee8ee000Dbe53; // Cory K Washington
+        lender = 0xA700b4eB416Be35b2911fd5Dee80678ff64fF6C9; // Updated lender address
+        loanAmount = 1500000000000; // Amount in USD (1.5 trillion)
+        currency = "USD";
+        ownershipPercentage = 100; // Percentage of ownership
+        purposeDescription = "Expand globally and build from certification with states.";
+
+        // Adding purposes
+        purposes.push(Purpose("Expand globally", "Use funds to establish operations in new markets."));
+        purposes.push(Purpose("Build certification with states", "Ensure compliance and certification in target markets."));
+        purposes.push(Purpose("Contractor payments", "Funds for contractors working on expansion projects."));
+        purposes.push(Purpose("Payroll", "Allocate funds for employee salaries during expansion."));
+        purposes.push(Purpose("Working capital", "Maintain liquidity for operational needs during growth."));
+        
+        loanRepaymentCommitment = "Loans will be paid back in a timely manner for the amount specified.";
+    }
+
+    // Function to get loan details
+    function getLoanDetails() public view returns (address, address, uint256, string memory, string memory) {
+        return (borrower, lender, loanAmount, currency, loanRepaymentCommitment);
+    }
+
+    // Function to get purposes
+    function getPurposes() public view returns (Purpose[] memory) {
+        return purposes;
+    }
+
+    // Commitment function
+    function commitToIntegrity() public view returns (string memory) {
+        return "Always act with integrity and care for community interests.";
+    }
+}
